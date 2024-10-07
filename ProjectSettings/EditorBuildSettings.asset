@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Scenes/MainMenu.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/RagdollCreatures/Demos/Scenes/Local Multiplayer.unity
+    guid: 5d2f497dcd797b74295782288605b8c4
   m_configObjects: {}

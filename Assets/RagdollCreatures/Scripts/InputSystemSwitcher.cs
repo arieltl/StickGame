@@ -7,7 +7,7 @@ namespace RagdollCreatures
 {
 	public class InputSystemSwitcher : MonoBehaviour
 	{
-		public static bool UseNewInputSystem;
+		public static bool UseNewInputSystem = true;
 		private bool actualUseNewInputSystem;
 
 		private void Awake()
@@ -25,6 +25,8 @@ namespace RagdollCreatures
 					UseNewInputSystem = true;
 					SwitchInputSystem();
 				}
+			} else {
+				Debug.Log("The new input system is activated, so the InputSystemSwitcher switches all assets to the new system");
 			}
 		}
 
