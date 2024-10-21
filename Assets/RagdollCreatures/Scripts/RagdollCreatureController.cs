@@ -36,6 +36,10 @@ namespace RagdollCreatures
 			creature = GetComponent<RagdollCreature>();
 			controller = new AbstractRagdollCreatureController(creature, movement);
 		}
+		void Start()
+		{
+			//find 
+		}
 
 		void OnDestroy() { }
 
@@ -47,6 +51,11 @@ namespace RagdollCreatures
 		public void FixedUpdate()
 		{
 			controller.FixedUpdate();
+		}
+
+		public void OnStartgame()
+		{
+			Debug.Log("OnStartGame");
 		}
 
 		public void OnMove(InputAction.CallbackContext context)
