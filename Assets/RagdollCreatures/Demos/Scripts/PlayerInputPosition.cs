@@ -23,6 +23,8 @@ namespace RagdollCreatures
 			{
 				int colorIndex = Random.Range(0, colors.Length);
 				Color newColor = colors[colorIndex];
+				var ragdollCreatureController = playerInput.gameObject.GetComponent<RagdollCreatureController>();
+				ragdollCreatureController.color = newColor;
 				foreach (SpriteRenderer renderer in ragdollCreature.GetComponentsInChildren<SpriteRenderer>())
 				{
 					if (null != renderer && null != renderer.GetComponent<RagdollLimb>())

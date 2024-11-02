@@ -58,6 +58,9 @@ namespace RagdollCreatures
 				{
 					foreach (RagdollLimb limb in ragdollCreature.ragdollLimbs)
 					{
+						if (limb == null) {
+							continue;
+						}
 						if (limb.isMuscleActive && limb.isActiveGroundDetection)
 						{
 							Rigidbody2D limbRigidbody = limb.rigidbody;
@@ -72,6 +75,9 @@ namespace RagdollCreatures
 				// Jump with normal gravity (gravityScale == 1) is more real but less fun :)
 				foreach (RagdollLimb limb in ragdollCreature.ragdollLimbs)
 				{
+					if (limb == null) {
+						continue;
+					}
 					if (!ragdollCreature.isGrounded)
 					{
 						if (limb.rigidbody.velocity.y < 0)

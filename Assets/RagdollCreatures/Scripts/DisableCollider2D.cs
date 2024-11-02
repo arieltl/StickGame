@@ -27,6 +27,10 @@ namespace RagdollCreatures
 		{
 			disableColliders(target1, target2);
 		}
+		public void resetColliders()
+		{
+			disableColliders(target1, target2);
+		}
 
 		void Update()
 		{

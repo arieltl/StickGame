@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using Unity.VisualScripting;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace RagdollCreatures
@@ -13,6 +15,11 @@ namespace RagdollCreatures
 	[RequireComponent(typeof(RagdollCreature))]
 	public class RagdollCreatureController : MonoBehaviour, IRagdollCreatureController
 	{
+		bool hasRespawned = false;
+
+		public Color color;
+		
+		public GameObject playerPrefab;
 		#region Movement
 		public RagdollCreatureMovement movement;
 		public IRagdollCreatureController controller;
@@ -29,16 +36,42 @@ namespace RagdollCreatures
 
 		#region Internal
 		private RagdollCreature creature;
+
+		public GameObject root;
+		public GameObject IK;
+		SpawnManager spawnMangager;
+
 		#endregion
 
-		void Awake()
-		{
-			creature = GetComponent<RagdollCreature>();
-			controller = new AbstractRagdollCreatureController(creature, movement);
+		void Awake() {
+			CreateController();
+			DontDestroyOnLoad(this.gameObject);
+
 		}
-		void Start()
-		{
-			//find 
+		
+		public void setColor() {
+			foreach (SpriteRenderer renderer in creature.GetComponentsInChildren<SpriteRenderer>())
+			{
+				if (null != renderer && null != renderer.GetComponent<RagdollLimb>())
+				{
+					renderer.color = color;
+				}
+			}
+		}
+
+		void CreateController() {
+			creature = GetComponent<RagdollCreature>();
+			var anim = GetComponentInChildren<Animator>();
+			creature.animator = anim;
+			creature.Initialize();
+			controller = new AbstractRagdollCreatureController(creature, movement);
+			
+			anim.Rebind();
+			anim.Update(0f);
+		}
+
+		void Start() {
+			spawnMangager = FindObjectOfType<SpawnManager>();
 		}
 
 		void OnDestroy() { }
@@ -55,8 +88,64 @@ namespace RagdollCreatures
 
 		public void OnStartgame()
 		{
-			Debug.Log("OnStartGame");
+			// if (spawnMangager != null) {
+			// 	spawnMangager.StartGame();
+			// 	spawnMangager = null;
+			// }
+			
+			
+			resetControlls();
+			// if (hasRespawned) {
+			// 	return;
+			// }
+			hasRespawned = true;
+			creature = GetComponent<RagdollCreature>();
+			
+
+			var currentBody = transform.Find("PlayerBody").gameObject;
+			
+			DestroyImmediate(currentBody);
+			creature.resetEvents();
+
+			var newBody = Instantiate(playerPrefab, transform.position, transform.rotation,transform);
+
+			newBody.name = "PlayerBody";
+			
+			
+			CreateController();
+			var disableColliders = GetComponent<DisableCollider2D>();
+			disableColliders.resetColliders();
+			setControlls();
+			setColor();
+
+			
 		}
+        void resetControlls(){
+            var playerInput = GetComponent<PlayerInput>();
+            var interactAction = playerInput.actions.FindAction("Interact");
+            var interactScript = GetComponentInChildren<Interact>();
+            interactAction.performed -= interactScript.OnInteract;
+            
+            var aimAction = playerInput.actions.FindAction("Aim");
+            var followMouse = GetComponentInChildren<FollowMouse>();
+            // aimAction.performed -= followMouse.OnMouseMove;
+            aimAction.performed -= interactScript.OnAim;
+        }
+
+        void setControlls() {
+	        var playerInput = GetComponent<PlayerInput>();
+	        var interactAction = playerInput.actions.FindAction("Interact");
+	        var interactScript = GetComponentInChildren<Interact>();
+	        interactScript.root = gameObject;
+	        interactAction.performed += interactScript.OnInteract;
+	        
+	        var aimAction = playerInput.actions.FindAction("Aim");
+	        var followMouse = GetComponentsInChildren<FollowMouse>();
+	        Debug.Log(followMouse.Length);
+	        aimAction.performed += followMouse[0].OnMouseMove;
+	        aimAction.performed += interactScript.OnAim;
+	        
+        }
 
 		public void OnMove(InputAction.CallbackContext context)
 		{

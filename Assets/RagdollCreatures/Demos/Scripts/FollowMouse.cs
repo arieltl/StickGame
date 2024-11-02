@@ -26,6 +26,7 @@ namespace RagdollCreatures
 		void Update()
 		{
 			Vector2 newPosition = GetMouseInput();
+		
 			transform.position = Camera.main.ScreenToWorldPoint(newPosition);
 		}
 
@@ -48,7 +49,9 @@ namespace RagdollCreatures
 
 		public void OnMouseMove(InputAction.CallbackContext context)
 		{
+			// Debug.Log("OnMouseMove");
 			position = context.ReadValue<Vector2>();
+			// Debug.Log(position);
 		}
 
 		public bool UseNewInputSystem()

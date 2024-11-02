@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 using UnityEngine.Events;
 
 namespace RagdollCreatures
@@ -108,7 +109,7 @@ namespace RagdollCreatures
 			}
 		}
 
-		private void Initialize()
+		public void Initialize()
 		{
 			// Get all limbs of this creature
 			ragdollLimbs = GetAllRagdollLimbs();
@@ -150,7 +151,7 @@ namespace RagdollCreatures
 			resetEvents();
 		}
 
-		void resetEvents()
+		public void resetEvents()
 		{
 			// Unsubscribe to all ragdoll limb collision events
 			foreach (RagdollLimb limb in ragdollLimbs)
@@ -216,7 +217,9 @@ namespace RagdollCreatures
 
 		private RagdollLimb[] GetAllRagdollLimbs()
 		{
-			return GetComponentsInChildren<RagdollLimb>();
+			var limbs = GetComponentsInChildren<RagdollLimb>().Where((limb => limb!= null )).ToArray();
+			Debug.Log("Limbs: " + limbs.Length);
+			return limbs;
 		}
 
 #if UNITY_EDITOR

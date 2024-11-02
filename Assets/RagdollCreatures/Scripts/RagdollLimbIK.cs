@@ -37,6 +37,8 @@ namespace RagdollCreatures
 		public float ikMuscleForce = 1;
 		public bool forceLimbToBeActive = true;
 
+		public bool limbsPreset = true;
+
 		// This must be used to compensate rotations from editor/inspector
 		// Did not find a better way yet.
 		// Tipp: If limbs not aim direct to the IK target, try to adjust the offset.
@@ -61,7 +63,10 @@ namespace RagdollCreatures
 
 		void Awake()
 		{
-			initialize();
+			if (limbsPreset)
+			{
+				initialize();
+			}
 		}
 
 		void LateUpdate()
@@ -79,7 +84,7 @@ namespace RagdollCreatures
 			}
 		}
 
-		void initialize()
+		public void initialize()
 		{
 			currentChainLengthResolver = chainLengthResolver;
 
