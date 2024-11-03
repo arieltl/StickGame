@@ -2,7 +2,7 @@
 
 namespace RagdollCreatures
 {
-	public class Sniper : MonoBehaviour, IInteractable
+	public class Pistol : MonoBehaviour, IInteractable
 	{
 		#region Settings
 		public Transform startPosition;
@@ -43,7 +43,7 @@ namespace RagdollCreatures
 				Vector2 dir = startPosition.position - transform.position;
 				float rotation = Mathf.Atan2(dir.x, dir.y) * Mathf.Rad2Deg;
 				audioSource.PlayOneShot(shootSound);
-				
+
 				Debug.DrawRay(startPosition.position, dir);
 
 				GameObject bullet = Instantiate(bulletPrefab);

@@ -62,6 +62,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df7054bbd9ff754469799b7e742df2d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  color: {r: 0, g: 0, b: 0, a: 0}
   playerPrefab: {fileID: 6446813713403942486, guid: 3fa49cf6b0784324394a3e82896fda7e, type: 3}
   movement: {fileID: 11400000, guid: 264d1d35422c2d345a752acf57281934, type: 2}
   playWalkEffect: 0
@@ -69,7 +70,7 @@ MonoBehaviour:
   playJumpEffect: 0
   jumpParticleSystem: {fileID: 0}
   root: {fileID: 9108739248114208585, guid: f8d35269df9ae5d49a4db81e2614392f, type: 3}
-  IK: {fileID: 2478357781140962669, guid: b792e1ee65947254aa4c4525ecdcda9f, type: 3}
+  IK: {fileID: 4052448816778017966}
 --- !u!114 &9106425056893678889
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -372,6 +373,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f726d604bc2b5a4f83edb4d5bd16b77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &4052448816778017966 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5434995839211357198, guid: 3fa49cf6b0784324394a3e82896fda7e, type: 3}
+  m_PrefabInstance: {fileID: 8309646336721565856}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &5246348621223564808 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4296166963355201192, guid: 3fa49cf6b0784324394a3e82896fda7e, type: 3}
