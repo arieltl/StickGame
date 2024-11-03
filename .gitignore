@@ -75,3 +75,12 @@ crashlytics-build.properties
 # For MacOS
 .DS_Store
 
+# Ignore all .png files in the craftpix-891176-animated-traps-pixel-art-pack directory and subdirectories
+/[Aa]ssets/[Cc]raftpix-891176-[Aa]nimated-[Tt]raps-[Pp]ixel-[Aa]rt-[Pp]ack/**/*.png
+
+# Ignore all .png files in the craftpix-net-511851-obstacle-game-asset-pack-3 directory and subdirectories
+/[Aa]ssets/[Cc]raftpix-net-511851-[Oo]bstacle-[Gg]ame-[Aa]sset-[Pp]ack-3/**/*.png
+
+# Ignore all .png files in the craftpix-561190-castle-platformer-pixel-art-tileset directory and subdirectories
+/[Aa]ssets/[Cc]raftpix-561190-[Cc]astle-[Pp]latformer-[Pp]ixel-[Aa]rt-[Tt]ileset/**/*.png
+

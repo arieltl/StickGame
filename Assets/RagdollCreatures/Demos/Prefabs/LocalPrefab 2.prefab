@@ -99,18 +99,6 @@ MonoBehaviour:
   OnRagdollLimbCollisionEnter2D:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 976648072758600578, guid: c59ef27f9c62f044e8d4357704042ef9, type: 3}
-        m_TargetAssemblyTypeName: RagdollCreatures.ColorSplatSystem, Assembly-CSharp
-        m_MethodName: doColorSplat
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 8496854169590715255, guid: 172e41c16c5ca9942b96be1d274fa3b6, type: 3}
         m_TargetAssemblyTypeName: RagdollCreatures.HealthSystem, Assembly-CSharp
         m_MethodName: doHitDamage
