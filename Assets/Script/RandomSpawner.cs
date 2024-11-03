@@ -8,31 +8,31 @@ public class TimedAreaSpawner : MonoBehaviour
     {
         public Transform areaTransform;         // Reference to the spawn area GameObject
         public Vector2 areaSize;                // Width and height of the spawn area
-        public float spawnInterval = 2f;        // Individual spawn interval for each area
         public int maxObjectsInArea = 5;        // Maximum objects allowed in this area
     }
 
     public GameObject[] prefabsToSpawn;         // Array of prefabs to spawn
     public SpawnArea[] spawnAreas;              // Array of spawn areas
+    public float globalSpawnInterval = 5f;      // Global interval for spawning
 
     private void Start()
     {
-        // Start a separate coroutine for each spawn area
-        foreach (SpawnArea spawnArea in spawnAreas)
-        {
-            StartCoroutine(SpawnObjectsInArea(spawnArea));
-        }
+        // Start the global spawn coroutine
+        StartCoroutine(GlobalSpawnCoroutine());
     }
 
-    private IEnumerator SpawnObjectsInArea(SpawnArea spawnArea)
+    private IEnumerator GlobalSpawnCoroutine()
     {
         while (true)
         {
-            // Spawn an object in this specific area
-            SpawnInArea(spawnArea);
+            // Choose a random spawn area from the array
+            SpawnArea selectedArea = spawnAreas[Random.Range(0, spawnAreas.Length)];
+            
+            // Spawn an object in the selected area
+            SpawnInArea(selectedArea);
 
-            // Wait for this area's specific interval before spawning the next object
-            yield return new WaitForSeconds(spawnArea.spawnInterval);
+            // Wait for the global interval before the next spawn
+            yield return new WaitForSeconds(globalSpawnInterval);
         }
     }
 
