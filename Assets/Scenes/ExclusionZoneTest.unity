@@ -704,7 +704,7 @@ GameObject:
   - component: {fileID: 207747625}
   m_Layer: 0
   m_Name: Spawn01
-  m_TagString: Untagged
+  m_TagString: Respawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -735,7 +735,7 @@ GameObject:
   - component: {fileID: 447256886}
   m_Layer: 0
   m_Name: Spawn04
-  m_TagString: Untagged
+  m_TagString: Respawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -827,6 +827,9 @@ MonoBehaviour:
   bulletSpeed: 60
   recoil: 1000
   shootDelay: 0.5
+  audioSource: {fileID: 0}
+  shootSound: {fileID: 0}
+  reloadSound: {fileID: 0}
 --- !u!114 &501567231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5335,7 +5338,7 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!1 &1060636240
+--- !u!1 &1020443016
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5343,122 +5346,42 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1060636242}
-  - component: {fileID: 1060636241}
-  - component: {fileID: 1060636243}
-  - component: {fileID: 1060636244}
+  - component: {fileID: 1020443018}
+  - component: {fileID: 1020443017}
   m_Layer: 0
-  m_Name: PlayerInputManager
+  m_Name: LevelManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1060636241
+--- !u!114 &1020443017
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1060636240}
+  m_GameObject: {fileID: 1020443016}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 621567455fd1c4ceb811cc8a00b6a1a5, type: 3}
+  m_Script: {fileID: 11500000, guid: ed12de4433bf6e842b0e78d0939d08fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_NotificationBehavior: 2
-  m_MaxPlayerCount: 4
-  m_AllowJoining: 1
-  m_JoinBehavior: 0
-  m_PlayerJoinedEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1060636243}
-        m_TargetAssemblyTypeName: RagdollCreatures.PlayerInputPosition, Assembly-CSharp
-        m_MethodName: OnPlayerJoined
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  m_PlayerLeftEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_JoinAction:
-    m_UseReference: 0
-    m_Action:
-      m_Name: 
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 0}
-  m_PlayerPrefab: {fileID: 8288453973846027515, guid: d1ec6c5a640c98c42b7985a1d8fd7282, type: 3}
-  m_SplitScreen: 0
-  m_MaintainAspectRatioInSplitScreen: 0
-  m_FixedNumberOfSplitScreens: -1
-  m_SplitScreenRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
---- !u!4 &1060636242
+--- !u!4 &1020443018
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1060636240}
+  m_GameObject: {fileID: 1020443016}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 2.75, y: 5.69, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1060636243
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1060636240}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4fc380c500d64b4eaa8ebc8ab913f1c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnPositions:
-  - {fileID: 207747625}
-  - {fileID: 1394914315}
-  - {fileID: 1846387220}
-  - {fileID: 447256886}
-  colors:
-  - {r: 0.056069765, g: 0.7924528, b: 0.17990166, a: 1}
-  - {r: 1, g: 0.8533139, b: 0, a: 1}
-  - {r: 0.7830189, g: 0, b: 0, a: 1}
-  - {r: 0, g: 0.736887, b: 1, a: 1}
---- !u!114 &1060636244
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1060636240}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c2d12b7a430e184db72c68252e533ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1105278036
 GameObject:
   m_ObjectHideFlags: 0
@@ -5663,7 +5586,7 @@ GameObject:
   - component: {fileID: 1394914315}
   m_Layer: 0
   m_Name: Spawn02
-  m_TagString: Untagged
+  m_TagString: Respawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11435,7 +11358,7 @@ GameObject:
   - component: {fileID: 1846387220}
   m_Layer: 0
   m_Name: Spawn03
-  m_TagString: Untagged
+  m_TagString: Respawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16749,7 +16672,7 @@ PrefabInstance:
     - target: {fileID: 1827713554467765026, guid: 7b24eceede3e17b478a1063f0e4cd8de, type: 3}
       propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1060636244}
+      objectReference: {fileID: 0}
     - target: {fileID: 1827713554467765026, guid: 7b24eceede3e17b478a1063f0e4cd8de, type: 3}
       propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: OnPlayerInputDeath
@@ -16826,7 +16749,6 @@ SceneRoots:
   - {fileID: 1435667682}
   - {fileID: 1980098345}
   - {fileID: 596137946}
-  - {fileID: 1060636242}
   - {fileID: 207747625}
   - {fileID: 1394914315}
   - {fileID: 1846387220}
@@ -16849,3 +16771,4 @@ SceneRoots:
   - {fileID: 1649463188}
   - {fileID: 1540262920}
   - {fileID: 1244538018}
+  - {fileID: 1020443018}

@@ -16,9 +16,12 @@ namespace RagdollCreatures
 	public class RagdollCreatureController : MonoBehaviour, IRagdollCreatureController
 	{
 		bool hasRespawned = false;
+		
+		
+		
 
 		public Color color;
-		
+		public int playerId = 0;
 		public GameObject playerPrefab;
 		#region Movement
 		public RagdollCreatureMovement movement;
@@ -35,11 +38,11 @@ namespace RagdollCreatures
 		#endregion
 
 		#region Internal
-		private RagdollCreature creature;
+		public RagdollCreature creature;
 
 		public GameObject root;
 		public GameObject IK;
-		SpawnManager spawnMangager;
+		GameManager gameMangager;
 
 		#endregion
 
@@ -65,13 +68,13 @@ namespace RagdollCreatures
 			creature.animator = anim;
 			creature.Initialize();
 			controller = new AbstractRagdollCreatureController(creature, movement);
-			
+			creature.OnRagdollLimbCollisionEnter2D.AddListener(OnRagdollLimbCollisionEnter2D);
 			anim.Rebind();
 			anim.Update(0f);
 		}
 
 		void Start() {
-			spawnMangager = FindObjectOfType<SpawnManager>();
+			gameMangager = FindObjectOfType<GameManager>();
 		}
 
 		void OnDestroy() { }
@@ -86,21 +89,22 @@ namespace RagdollCreatures
 			controller.FixedUpdate();
 		}
 
-		public void OnStartgame()
-		{
-			// if (spawnMangager != null) {
-			// 	spawnMangager.StartGame();
-			// 	spawnMangager = null;
-			// }
+		public void OnStartgame() {
+			if (gameMangager != null) {
+				gameMangager.StartGame();
+				gameMangager = null;
+			} else {
+				var gameManager = FindObjectOfType<GameManager>();
+				gameManager.ApplyDamage(playerId, 100);
+			}
+
+
+		}
+
+		public void Respawn() {
 			
-			
-			resetControlls();
-			// if (hasRespawned) {
-			// 	return;
-			// }
 			hasRespawned = true;
-			creature = GetComponent<RagdollCreature>();
-			
+			creature.ActivateAllMuscles();			
 
 			var currentBody = transform.Find("PlayerBody").gameObject;
 			
@@ -113,14 +117,14 @@ namespace RagdollCreatures
 			
 			
 			CreateController();
+			creature.isDead = false;
 			var disableColliders = GetComponent<DisableCollider2D>();
 			disableColliders.resetColliders();
 			setControlls();
 			setColor();
-
-			
 		}
-        void resetControlls(){
+
+		void resetControlls(){
             var playerInput = GetComponent<PlayerInput>();
             var interactAction = playerInput.actions.FindAction("Interact");
             var interactScript = GetComponentInChildren<Interact>();
@@ -154,22 +158,18 @@ namespace RagdollCreatures
 
 		public void OnRagdollLimbCollisionEnter2D(object sender, Collision2D col)
 		{
-			OnRagdollLimbCollisionEnter2D(sender, col);
 		}
 
 		public void OnRagdollLimbCollisionExit2D(object sender, Collision2D col)
 		{
-			OnRagdollLimbCollisionExit2D(sender, col);
 		}
 
 		public void OnTriggerEnter2D(Collider2D col)
 		{
-			OnTriggerEnter2D(col);
 		}
 
 		public void OnTriggerExit2D(Collider2D col)
 		{
-			OnTriggerExit2D(col);
 		}
 
 		public bool UseNewInputSystem()
