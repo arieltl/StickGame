@@ -186,7 +186,6 @@ Transform:
   - {fileID: 1811445955}
   - {fileID: 672092416}
   - {fileID: 54410553}
-  - {fileID: 1192882327}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &165961671
@@ -5719,7 +5718,7 @@ GameObject:
   - component: {fileID: 1192882327}
   - component: {fileID: 1192882328}
   m_Layer: 0
-  m_Name: SpawnManager
+  m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5734,11 +5733,11 @@ Transform:
   m_GameObject: {fileID: 1192882326}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.1229401, y: 3.2339325, z: 12.323291}
+  m_LocalPosition: {x: 1.0803337, y: 1.3481945, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 165408832}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1192882328
 MonoBehaviour:
@@ -11611,3 +11610,4 @@ SceneRoots:
   - {fileID: 165408832}
   - {fileID: 219273712}
   - {fileID: 1995734574}
+  - {fileID: 1192882327}
