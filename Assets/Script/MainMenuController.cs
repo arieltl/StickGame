@@ -7,7 +7,7 @@ public class MainMenuController : MonoBehaviour
 {
     public void StartGame()
     {
-        LoadLevel("Local Multiplayer");
+        LoadLevel("StartGame");
     }
 
     public void ExitGame()
