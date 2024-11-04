@@ -76,6 +76,7 @@ namespace RagdollCreatures
 
 		void Start() {
 			gameMangager = FindObjectOfType<GameManager>();
+			setControlls();
 		}
 
 		void OnDestroy() { }
@@ -153,6 +154,9 @@ namespace RagdollCreatures
 	        Debug.Log(followMouse.Length);
 	        aimAction.performed += followMouse[0].OnMouseMove;
 	        aimAction.performed += interactScript.OnAim;
+
+			var shootAction = playerInput.actions.FindAction("Shoot");
+			shootAction.performed += interactScript.OnAttack;
 
 			var placeAction = playerInput.actions.FindAction("Place");
 			placeAction.performed += OnPlace;

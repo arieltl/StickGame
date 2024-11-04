@@ -48,10 +48,7 @@ namespace RagdollCreatures
 
 		public void OnAttack(InputAction.CallbackContext context)
 		{
-			if (context.started && useNewInputSystem)
-			{
-				OnAttack();
-			}
+			OnAttack();
 		}
 
 		private void OnAttack()
@@ -76,10 +73,8 @@ namespace RagdollCreatures
 
 		public void OnInteract(InputAction.CallbackContext context)
 		{
-			if (context.started && useNewInputSystem)
-			{
-				OnInteract();
-			}
+			Debug.Log("Interact");
+			Reset();
 		}
 
 		public void InteractOnCollision()

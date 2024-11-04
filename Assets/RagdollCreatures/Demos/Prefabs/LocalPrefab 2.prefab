@@ -63,12 +63,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 0, g: 0, b: 0, a: 0}
+  playerId: 0
   playerPrefab: {fileID: 6446813713403942486, guid: 3fa49cf6b0784324394a3e82896fda7e, type: 3}
   movement: {fileID: 11400000, guid: 264d1d35422c2d345a752acf57281934, type: 2}
   playWalkEffect: 0
   walkParticleSystem: {fileID: 0}
   playJumpEffect: 0
   jumpParticleSystem: {fileID: 0}
+  creature: {fileID: 0}
   root: {fileID: 9108739248114208585, guid: f8d35269df9ae5d49a4db81e2614392f, type: 3}
   IK: {fileID: 4052448816778017966}
 --- !u!114 &9106425056893678889
@@ -148,7 +150,7 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8433771454317024967}
-        m_TargetAssemblyTypeName: 
+        m_TargetAssemblyTypeName: RagdollCreatures.RagdollCreatureController, Assembly-CSharp
         m_MethodName: OnMove
         m_Mode: 0
         m_Arguments:
@@ -162,79 +164,19 @@ MonoBehaviour:
     m_ActionId: 586e8e2e-87e4-467e-838b-52e1c369c324
     m_ActionName: Stickman/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5246348621223564808}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: OnInteract
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 8eb45e7e-eed7-4af2-a7dd-a42e1b2f7cd0
     m_ActionName: Stickman/Interact[/Keyboard/e]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3202993787905030482}
-        m_TargetAssemblyTypeName: RagdollCreatures.FollowMouse, Assembly-CSharp
-        m_MethodName: OnMouseMove
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 5246348621223564808}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: OnAim
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 45b3d15d-c640-48b5-b32b-b4edbdc7926f
     m_ActionName: Stickman/Aim[/Mouse/position]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5246348621223564808}
-        m_TargetAssemblyTypeName: RagdollCreatures.Interact, Assembly-CSharp
-        m_MethodName: OnAttack
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 23b70e8e-269d-4b87-a358-607393f3ed20
     m_ActionName: Stickman/Shoot[/Mouse/leftButton]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: OnGrab
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 728683d0-46d0-4f81-b70f-75455bd77152
     m_ActionName: Stickman/Grab[/Mouse/rightButton]
   - m_PersistentCalls:
@@ -265,6 +207,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: c1f6e3ce-7ed5-4787-ad15-cea634dbe85b
     m_ActionName: RagdollCreature/Startgame[/XInputControllerWindows/buttonSouth,/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 46605811-dd4d-416a-b781-6d69670006df
+    m_ActionName: RagdollCreature/Place[/Keyboard/f]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: RagdollCreature
@@ -350,33 +296,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9130998496981930848, guid: 3fa49cf6b0784324394a3e82896fda7e, type: 3}
   m_PrefabInstance: {fileID: 8309646336721565856}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3202993787905030482 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6855211665071702514, guid: 3fa49cf6b0784324394a3e82896fda7e, type: 3}
-  m_PrefabInstance: {fileID: 8309646336721565856}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f726d604bc2b5a4f83edb4d5bd16b77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &4052448816778017966 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5434995839211357198, guid: 3fa49cf6b0784324394a3e82896fda7e, type: 3}
   m_PrefabInstance: {fileID: 8309646336721565856}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5246348621223564808 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4296166963355201192, guid: 3fa49cf6b0784324394a3e82896fda7e, type: 3}
-  m_PrefabInstance: {fileID: 8309646336721565856}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5328a238f3370c48bc2e9f95161c0fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!95 &6260737012936079415 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 2716603465376448663, guid: 3fa49cf6b0784324394a3e82896fda7e, type: 3}

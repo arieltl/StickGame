@@ -20,4 +20,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ExclusionZoneTest 1.unity
     guid: 243ffc9c639daac48913348a43f62bab
+  - enabled: 1
+    path: Assets/Scenes/GreenZone.unity
+    guid: de56486c619c20d40a5f89173e4cbf5a
+  - enabled: 1
+    path: Assets/Scenes/EndGame.unity
+    guid: 20a500a45a099c24588cff624450208c
   m_configObjects: {}

@@ -14504,13 +14504,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: SkateboardWIN
       objectReference: {fileID: 0}
+    - target: {fileID: 2333743006516608258, guid: 64a013aa24e5cf74ca31d49ce658b4e0, type: 3}
+      propertyPath: newSceneName
+      value: EndGame
+      objectReference: {fileID: 0}
     - target: {fileID: 3290133447463613782, guid: 64a013aa24e5cf74ca31d49ce658b4e0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.45
+      value: -1.15
       objectReference: {fileID: 0}
     - target: {fileID: 3290133447463613782, guid: 64a013aa24e5cf74ca31d49ce658b4e0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.95
+      value: 8.32
       objectReference: {fileID: 0}
     - target: {fileID: 3290133447463613782, guid: 64a013aa24e5cf74ca31d49ce658b4e0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -14567,7 +14571,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2963764801609465001, guid: 9d10f49df70f74e4e9120122941732f0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.885738
+      value: -1.7
       objectReference: {fileID: 0}
     - target: {fileID: 2963764801609465001, guid: 9d10f49df70f74e4e9120122941732f0, type: 3}
       propertyPath: m_LocalPosition.z
