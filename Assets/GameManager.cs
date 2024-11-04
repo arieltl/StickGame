@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
             player.playerId = i;
             this.players.Add(new PlayerInfo { health = 100, score = 0 ,controller = player});
         }
-        LoadLevel("ExclusionZoneTest");
+        LoadLevel("ExclusionZoneTest 1");
     }
     
     public void  ApplyDamage(int playerId, int damage)

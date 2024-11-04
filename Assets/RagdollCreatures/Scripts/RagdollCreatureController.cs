@@ -43,6 +43,7 @@ namespace RagdollCreatures
 		public GameObject root;
 		public GameObject IK;
 		GameManager gameMangager;
+		private bool shouldRespawn = false;
 
 		#endregion
 
@@ -82,6 +83,11 @@ namespace RagdollCreatures
 		public void Update()
 		{
 			controller.Update();
+			if (shouldRespawn)
+			{
+				Respawn();
+				shouldRespawn = false;
+			}
 		}
 
 		public void FixedUpdate()
@@ -180,6 +186,11 @@ namespace RagdollCreatures
 		public void SetUseNewInputSystem(bool useNewInputSystem)
 		{
 			controller.SetUseNewInputSystem(useNewInputSystem);
+		}
+
+		public void DelayRespawn()
+		{
+			shouldRespawn = true;
 		}
 	}
 }
