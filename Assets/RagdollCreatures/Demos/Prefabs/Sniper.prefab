@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 459093075870676096}
   - component: {fileID: 119287754901376154}
   - component: {fileID: 3823861583296978659}
+  - component: {fileID: 4637132786713580859}
   m_Layer: 0
   m_Name: Sniper
   m_TagString: Equipable
@@ -345,6 +346,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &4637132786713580859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2402537585980354324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f4a40ae1d3bb49ffbbe66429182f246, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4109747000851008718
 GameObject:
   m_ObjectHideFlags: 0

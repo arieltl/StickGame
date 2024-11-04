@@ -82,6 +82,15 @@ namespace RagdollCreatures
 			}
 		}
 
+		public void InteractOnCollision()
+		{
+			if (null == currentInteractable)
+			{
+				OnInteract();
+			}
+			
+		}
+
 		private void OnInteract()
 		{
 			Reset();
@@ -143,7 +152,12 @@ namespace RagdollCreatures
 				}
 
 				currentInteractable.transform.parent = null;
+
+				// Move the weapon transform an offset away from the player
+				currentInteractable.transform.position = new Vector3(parent.transform.position.x, parent.transform.position.y, 0) + new Vector3(0, 1, 0);
+
 				currentInteractable = null;
+				
 			}
 		}
 
