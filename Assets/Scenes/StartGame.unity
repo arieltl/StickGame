@@ -11578,6 +11578,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 55db1922bf07beb408746b3d9038fa93, type: 3}
     - target: {fileID: -6419864109807438576, guid: 93543376e35a54c3e8ade2fb90ea36a0, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -6419864109807438576, guid: 93543376e35a54c3e8ade2fb90ea36a0, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
@@ -11652,6 +11656,10 @@ PrefabInstance:
     - target: {fileID: 6072297823685083658, guid: 93543376e35a54c3e8ade2fb90ea36a0, type: 3}
       propertyPath: m_Name
       value: PlaceableItemIcon
+      objectReference: {fileID: 0}
+    - target: {fileID: 9014470271592723447, guid: 93543376e35a54c3e8ade2fb90ea36a0, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

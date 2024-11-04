@@ -33,6 +33,10 @@ public class PlaceablePickUp : MonoBehaviour
         if (controller == null) return;
 
         var player = gameManager.players[controller.playerId];
+        Debug.Log("Player " + controller.playerId + " picked up " );
         player.collectedItem = placeableItem;
+        
+        
+        Destroy(gameObject);
     }
 }
