@@ -154,8 +154,17 @@ namespace RagdollCreatures
 	        Debug.Log(followMouse.Length);
 	        aimAction.performed += followMouse[0].OnMouseMove;
 	        aimAction.performed += interactScript.OnAim;
-	        
+
+			var placeAction = playerInput.actions.FindAction("Place");
+			placeAction.performed += OnPlace;
         }
+
+		void OnPlace(InputAction.CallbackContext context) {
+			var placeable = gameMangager.players[playerId].collectedItem;
+			if (placeable == null) return;
+
+			Instantiate(placeable.Value.prefab, transform.position + new Vector3(1, -1, 0), Quaternion.identity);			
+		}
 
 		public void OnMove(InputAction.CallbackContext context)
 		{

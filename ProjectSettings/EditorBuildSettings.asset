@@ -14,4 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ExclusionZoneTest.unity
     guid: 93997a31d732fd94f8ff663804adb845
+  - enabled: 1
+    path: Assets/Scenes/StartGame.unity
+    guid: c9aedd1c697f54621a9c2b56dd0ff969
+  - enabled: 1
+    path: Assets/Scenes/ExclusionZoneTest 1.unity
+    guid: 243ffc9c639daac48913348a43f62bab
   m_configObjects: {}

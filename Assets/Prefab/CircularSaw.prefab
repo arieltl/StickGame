@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 9081867161246263233}
   - component: {fileID: 8065768417828237594}
   - component: {fileID: 9059703042547554291}
+  - component: {fileID: 452201609040845521}
   m_Layer: 0
   m_Name: CircularSaw
   m_TagString: Untagged
@@ -142,3 +143,16 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.6
+--- !u!114 &452201609040845521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2434501133364087868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0bc8a91138144479bd22e7fe2d30659, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}

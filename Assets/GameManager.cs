@@ -1,15 +1,41 @@
 using System.Collections;
 using System.Collections.Generic;
 using RagdollCreatures;
+using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public List<PlaceableItem> placeableTraps = new List<PlaceableItem>();
+    public List<PlaceableItem> placeableBlocks = new List<PlaceableItem>();
     public List<PlayerInfo> players = new List<PlayerInfo>();
+    public GameObject trapIconPrefab;
+    float trapTimer = 20f;
+
     void Start()
     {
         DontDestroyOnLoad(this.gameObject);
+    }
+
+    void Update()
+    {
+        trapTimer += Time.deltaTime;
+        if (trapTimer >= 20)
+        {
+            trapTimer = 0;
+
+            var trap = Instantiate(trapIconPrefab, new Vector3(3, -2, 0), Quaternion.identity);
+
+            var renderer = trap.GetComponent<SpriteRenderer>();
+            if (renderer != null)
+            {
+                renderer.sprite = placeableTraps[0].icon;
+            }
+
+            var pickUp = trap.GetComponent<PlaceablePickUp>();
+            pickUp.placeableItem = placeableTraps[0];
+        }
     }
     
     public void StartGame()
@@ -24,7 +50,7 @@ public class GameManager : MonoBehaviour
         LoadLevel("ExclusionZoneTest 1");
     }
     
-    public void  ApplyDamage(int playerId, int damage)
+    public void ApplyDamage(int playerId, int damage)
     {
        var player = players[playerId];
        if (player.controller.creature.isDead) return;
@@ -65,4 +91,12 @@ public struct PlayerInfo
     public int health;
     public int score;
     public RagdollCreatureController controller;
+    public PlaceableItem? collectedItem;
+}
+[System.Serializable]
+public struct PlaceableItem
+{
+    public GameObject prefab;
+   
+    public Sprite icon;
 }

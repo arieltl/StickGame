@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8220455560402645680}
   - component: {fileID: 7278255775142539724}
   - component: {fileID: 1795192866665616761}
+  - component: {fileID: 9123869385488918069}
   m_Layer: 0
   m_Name: LargeTrap
   m_TagString: Untagged
@@ -193,3 +194,16 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 5
+--- !u!114 &9123869385488918069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8351480197132944108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0bc8a91138144479bd22e7fe2d30659, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
