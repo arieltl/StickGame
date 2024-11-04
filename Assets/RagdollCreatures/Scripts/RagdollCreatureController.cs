@@ -96,9 +96,8 @@ namespace RagdollCreatures
 		}
 
 		public void OnStartgame() {
-			if (gameMangager != null) {
+			if (!gameMangager.isGameRunning){
 				gameMangager.StartGame();
-				gameMangager = null;
 			} else {
 				var gameManager = FindObjectOfType<GameManager>();
 				gameManager.ApplyDamage(playerId, 100);
@@ -161,9 +160,14 @@ namespace RagdollCreatures
 
 		void OnPlace(InputAction.CallbackContext context) {
 			var placeable = gameMangager.players[playerId].collectedItem;
+			Debug.Log("Place " + placeable);
 			if (placeable == null) return;
-
-			Instantiate(placeable.Value.prefab, transform.position + new Vector3(1, -1, 0), Quaternion.identity);			
+			Debug.Log("Place not null");
+			var body = transform.Find("PlayerBody").gameObject;
+			var root = body.transform.Find("Root").gameObject;
+			var hip = root.transform.Find("Hip");
+			Instantiate(placeable.Value.prefab, hip.position + new Vector3(1, -1, 0), Quaternion.identity);
+			gameMangager.players[playerId].collectedItem = null;
 		}
 
 		public void OnMove(InputAction.CallbackContext context)

@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public List<PlayerInfo> players = new List<PlayerInfo>();
     public GameObject trapIconPrefab;
     float trapTimer = 20f;
+    public bool isGameRunning = false;
 
     void Start()
     {
@@ -28,18 +29,36 @@ public class GameManager : MonoBehaviour
             var trap = Instantiate(trapIconPrefab, new Vector3(3, -2, 0), Quaternion.identity);
 
             var renderer = trap.GetComponent<SpriteRenderer>();
+            var trapI = Random.Range(0, placeableTraps.Count);
+
             if (renderer != null)
             {
-                renderer.sprite = placeableTraps[0].icon;
+                renderer.sprite = placeableTraps[trapI].icon;
             }
 
             var pickUp = trap.GetComponent<PlaceablePickUp>();
-            pickUp.placeableItem = placeableTraps[0];
+            pickUp.placeableItem = placeableTraps[trapI];
+            
+            var block  = Instantiate(trapIconPrefab, new Vector3(5, 6, 0), Quaternion.identity);
+            var blockRenderer = block.GetComponent<SpriteRenderer>();
+            var blockI = Random.Range(0, placeableBlocks.Count);
+            if (blockRenderer != null)
+            {
+                blockRenderer.sprite = placeableBlocks[blockI].icon;
+            }
+            
+            var blockPickUp = block.GetComponent<PlaceablePickUp>();
+            var blockItem = placeableBlocks[blockI];
+            blockPickUp.placeableItem = blockItem;
+            
+            
+            
         }
     }
     
     public void StartGame()
     {
+        isGameRunning = true;
         var players = GameObject.FindGameObjectsWithTag("Player");
         for (int i = 0; i < players.Length; i++)
         {
@@ -86,7 +105,7 @@ public class GameManager : MonoBehaviour
     }
 }
 //struct player info with health and score
-public struct PlayerInfo
+public class PlayerInfo
 {
     public int health;
     public int score;
