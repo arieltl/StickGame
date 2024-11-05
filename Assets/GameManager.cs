@@ -19,43 +19,38 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
 
-    void Update()
-    {
-        trapTimer += Time.deltaTime;
-        if (trapTimer >= 20)
+
+
+    public void SpawnTrap(Vector3 position) {
+        var trap = Instantiate(trapIconPrefab, position, Quaternion.identity);
+
+        var renderer = trap.GetComponent<SpriteRenderer>();
+        var trapI = Random.Range(0, placeableTraps.Count);
+
+        if (renderer != null)
         {
-            trapTimer = 0;
-
-            var trap = Instantiate(trapIconPrefab, new Vector3(3, -2, 0), Quaternion.identity);
-
-            var renderer = trap.GetComponent<SpriteRenderer>();
-            var trapI = Random.Range(0, placeableTraps.Count);
-
-            if (renderer != null)
-            {
-                renderer.sprite = placeableTraps[trapI].icon;
-            }
-
-            var pickUp = trap.GetComponent<PlaceablePickUp>();
-            pickUp.placeableItem = placeableTraps[trapI];
-            
-            var block  = Instantiate(trapIconPrefab, new Vector3(5, 6, 0), Quaternion.identity);
-            var blockRenderer = block.GetComponent<SpriteRenderer>();
-            var blockI = Random.Range(0, placeableBlocks.Count);
-            if (blockRenderer != null)
-            {
-                blockRenderer.sprite = placeableBlocks[blockI].icon;
-            }
-            
-            var blockPickUp = block.GetComponent<PlaceablePickUp>();
-            var blockItem = placeableBlocks[blockI];
-            blockPickUp.placeableItem = blockItem;
-            
-            
-            
+            renderer.sprite = placeableTraps[trapI].icon;
         }
+
+        var pickUp = trap.GetComponent<PlaceablePickUp>();
+        pickUp.placeableItem = placeableTraps[trapI];
+            
     }
-    
+
+    public void SpawnBlock(Vector3 position) {
+        var block  = Instantiate(trapIconPrefab, position, Quaternion.identity);
+        var blockRenderer = block.GetComponent<SpriteRenderer>();
+        var blockI = Random.Range(0, placeableBlocks.Count);
+        if (blockRenderer != null)
+        {
+            blockRenderer.sprite = placeableBlocks[blockI].icon;
+        }
+            
+        var blockPickUp = block.GetComponent<PlaceablePickUp>();
+        var blockItem = placeableBlocks[blockI];
+        blockPickUp.placeableItem = blockItem;
+    }
+
     public void StartGame()
     {
         isGameRunning = true;

@@ -1,54 +1,93 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+
 
 public class TimedAreaSpawner : MonoBehaviour
 {
-    [System.Serializable]
-    public class SpawnArea
-    {
-        public Transform areaTransform;         // Reference to the spawn area GameObject
-        public Vector2 areaSize;                // Width and height of the spawn area
-        public int maxObjectsInArea = 5;        // Maximum objects allowed in this area
-    }
 
-    public GameObject[] prefabsToSpawn;         // Array of prefabs to spawn
-    public SpawnArea[] spawnAreas;              // Array of spawn areas
-    public float globalSpawnInterval = 5f;      // Global interval for spawning
+    [HideInInspector]
+    //dictionary of spawn areas with guid as key
+    public Dictionary<string, SpawnArea> spawnAreas = new Dictionary<string, SpawnArea>();
 
+
+
+
+    public RandomTimer trapSpawnTime;                              // Interval between spawns
+    public RandomTimer blockSpawnTime;                              // Interval between spawns
+    public RandomTimer weaponSpawnTime;
+
+    GameManager gameManager;
+
+
+    float trapTimer = 15;
+    float blockTimer = 10;
+    float weaponTimer = 5;
+    
+    
     private void Start()
     {
-        // Start the global spawn coroutine
-        StartCoroutine(GlobalSpawnCoroutine());
+        gameManager = FindObjectOfType<GameManager>();
     }
 
-    private IEnumerator GlobalSpawnCoroutine()
+    void Update()
     {
-        while (true)
-        {
-            // Choose a random spawn area from the array
-            SpawnArea selectedArea = spawnAreas[Random.Range(0, spawnAreas.Length)];
+        
+            
+            trapTimer -= Time.deltaTime;
+            blockTimer -= Time.deltaTime;
+            // weaponTimer -= Time.deltaTime;
+            
+            if (trapTimer <= 0)
+            {
+                trapTimer = Random.Range(trapSpawnTime.minTime, trapSpawnTime.maxTime);
+                SpawnArea selectedArea = spawnAreas.ElementAt(Random.Range(0, spawnAreas.Count)).Value;
+                gameManager.SpawnTrap(getPosition(selectedArea));
+            }
+            if (blockTimer <= 0)
+            {
+                blockTimer = Random.Range(blockSpawnTime.minTime, blockSpawnTime.maxTime);
+                SpawnArea selectedArea = spawnAreas.ElementAt(Random.Range(0, spawnAreas.Count)).Value;
+                gameManager.SpawnBlock(getPosition(selectedArea));
+            }
+            // if (weaponTimer <= 0)
+            // {
+            //     weaponTimer = Random.Range(weaponSpawnTime.minTime, weaponSpawnTime.maxTime);
+            //     SpawnArea selectedArea = spawnAreas[Random.Range(0, spawnAreas.Count)];
+            //     gameManager.SpawnBlock(getPosition(selectedArea));
+            // }
+        
+            
             
             // Spawn an object in the selected area
-            SpawnInArea(selectedArea);
 
             // Wait for the global interval before the next spawn
-            yield return new WaitForSeconds(globalSpawnInterval);
-        }
     }
 
-    private void SpawnInArea(SpawnArea spawnArea)
+    private Vector3 getPosition(SpawnArea spawnArea)
     {
         // Choose a random prefab from the array
-        GameObject prefab = prefabsToSpawn[Random.Range(0, prefabsToSpawn.Length)];
 
         // Generate a random position within the spawn area's bounds
-        Vector3 randomPosition = new Vector3(
+        return new Vector3(
             Random.Range(spawnArea.areaTransform.position.x - spawnArea.areaSize.x / 2, spawnArea.areaTransform.position.x + spawnArea.areaSize.x / 2),
             Random.Range(spawnArea.areaTransform.position.y - spawnArea.areaSize.y / 2, spawnArea.areaTransform.position.y + spawnArea.areaSize.y / 2),
             0f // Assuming a 2D game; set Z to 0
         );
 
-        // Spawn the prefab at the random position
-        Instantiate(prefab, randomPosition, Quaternion.identity);
     }
+}
+
+[System.Serializable]
+public struct RandomTimer {
+    public float minTime;
+    public float maxTime;
+}
+
+[System.Serializable]
+public struct SpawnArea
+{
+    public Transform areaTransform;         // Reference to the spawn area GameObject
+    public Vector2 areaSize;                // Width and height of the spawn area
 }
