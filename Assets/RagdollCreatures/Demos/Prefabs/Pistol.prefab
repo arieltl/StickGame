@@ -206,7 +206,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startPosition: {fileID: 9144703642479461360}
   bulletPrefab: {fileID: 2564232881344377773, guid: 53ce596b08391d94cbdd2d70e877cd9c, type: 3}
-  damage: 25
+  damage: 10
   bulletSpeed: 60
   recoil: 0
   shootDelay: 2

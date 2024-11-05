@@ -7,8 +7,6 @@ public class Bomb : MonoBehaviour
     public float explosionRadius = 5f; // Radius of the explosion
     public float explosionDelay = 2f;  // Time before the bomb explodes after being triggered
 
-    public GameObject explosionEffect; // Optional: Explosion particle effect prefab
-
     void Start()
     {
         // Start the explosion countdown
@@ -19,18 +17,9 @@ public class Bomb : MonoBehaviour
     {
         // Wait for the specified delay
         yield return new WaitForSeconds(explosionDelay);
-        
-        // Trigger explosion effect if there is one
-        if (explosionEffect != null)
-        {
-            Instantiate(explosionEffect, transform.position, Quaternion.identity);
-        }
 
-        // Call the explosion logic
-        Explode();
-
-        // Destroy the bomb object after it explodes
-        Destroy(gameObject);
+        // Trigger explosion animation if there is one
+        ActivateExplosionAnimation();
     }
 
     private void Explode()
@@ -50,10 +39,14 @@ public class Bomb : MonoBehaviour
         Debug.Log("Bomb exploded, destroyed all destructible items in radius.");
     }
 
-    // Optional: Visualize the explosion radius in the editor
-    private void OnDrawGizmosSelected()
+    private void ActivateExplosionAnimation()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, explosionRadius);
+        GetComponent<Animator>().SetTrigger("Explode");
+    }
+
+    public void DestroyObject()
+    {
+        Destroy(gameObject);
+        Explode();
     }
 }

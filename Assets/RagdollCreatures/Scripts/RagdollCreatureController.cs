@@ -111,6 +111,8 @@ namespace RagdollCreatures
 			
 			hasRespawned = true;
 			creature.ActivateAllMuscles();			
+			
+			gameMangager.players[playerId].health = 100;
 
 			var currentBody = transform.Find("PlayerBody").gameObject;
 			

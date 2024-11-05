@@ -66,9 +66,10 @@ public class GameManager : MonoBehaviour
     
     public void ApplyDamage(int playerId, int damage)
     {
-       var player = players[playerId];
-       if (player.controller.creature.isDead) return;
-       player.health -= damage;
+        var player = players[playerId];
+        if (player.controller.creature.isDead) return;
+        player.health -= damage;
+
         if (player.health <= 0)
         {
             player.controller.creature.DeactivateAllMuscles();

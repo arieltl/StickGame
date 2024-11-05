@@ -47,10 +47,10 @@ namespace RagdollCreatures
 				Debug.DrawRay(startPosition.position, dir);
 
 				GameObject bullet = Instantiate(bulletPrefab);
-				SniperBullet sniperBullet = bullet.GetComponent<SniperBullet>();
-				if (null != sniperBullet)
+				Bullet bulletScript = bullet.GetComponent<Bullet>();
+				if (null != bulletScript)
 				{
-					sniperBullet.SetDamage(damage);
+					bulletScript.SetDamage(damage);
 				}
 				bullet.transform.position = startPosition.position;
 				bullet.transform.rotation = startPosition.rotation;
