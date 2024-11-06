@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/Scenes/StartGame.unity
     guid: c9aedd1c697f54621a9c2b56dd0ff969
   - enabled: 1
+    path: Assets/Scenes/Castle.unity
+    guid: 9b0a4fbca408546479b135e575f0e498
+  - enabled: 1
     path: Assets/Scenes/ExclusionZoneTest 1.unity
     guid: 243ffc9c639daac48913348a43f62bab
   - enabled: 1

@@ -6,7 +6,7 @@ public class SkateBoardPickup : MonoBehaviour
 {
     public string newSceneName; // The name of the new scene to load
     private GameManager gameManager;
-
+    bool hasDetected = false;
     void Start()
     {
         // Find the GameManager instance for score tracking and scene management
@@ -20,11 +20,13 @@ public class SkateBoardPickup : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("Pickup Triggered");
-
         // Check if the colliding object has a RagdollLimb component (for player detection)
         var limb = other.GetComponent<RagdollLimb>();
         if (limb != null)
         {
+            if (hasDetected) return;
+
+            hasDetected = true;
             // Get the RagdollCreatureController from the player
             var playerController = other.GetComponentInParent<RagdollCreatureController>();
             if (playerController != null)
