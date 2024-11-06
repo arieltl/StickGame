@@ -14567,6 +14567,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5200295709449689732, guid: 64a013aa24e5cf74ca31d49ce658b4e0, type: 3}
+      propertyPath: newSceneName
+      value: Castle
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

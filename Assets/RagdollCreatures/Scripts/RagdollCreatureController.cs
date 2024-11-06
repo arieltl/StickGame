@@ -18,7 +18,7 @@ namespace RagdollCreatures
 		bool hasRespawned = false;
 		
 		
-		
+		private Vector3 aimDirection = new Vector3(1, -1, 0);
 
 		public Color color;
 		public int playerId = 0;
@@ -142,6 +142,7 @@ namespace RagdollCreatures
             var followMouse = GetComponentInChildren<FollowMouse>();
             // aimAction.performed -= followMouse.OnMouseMove;
             aimAction.performed -= interactScript.OnAim;
+            
         }
 
         void setControlls() {
@@ -156,6 +157,10 @@ namespace RagdollCreatures
 	        Debug.Log(followMouse.Length);
 	        aimAction.performed += followMouse[0].OnMouseMove;
 	        aimAction.performed += interactScript.OnAim;
+	        aimAction.performed += (InputAction.CallbackContext context) => {
+		        var vec = context.ReadValue<Vector2>().normalized;
+		        aimDirection = new Vector3(vec.x, vec.y, 0);
+	        };
 
 			var shootAction = playerInput.actions.FindAction("Shoot");
 			shootAction.performed += interactScript.OnAttack;
@@ -172,7 +177,7 @@ namespace RagdollCreatures
 			var body = transform.Find("PlayerBody").gameObject;
 			var root = body.transform.Find("Root").gameObject;
 			var hip = root.transform.Find("Hip");
-			Instantiate(placeable.Value.prefab, hip.position + new Vector3(1, -1, 0), Quaternion.identity);
+			Instantiate(placeable.Value.prefab, hip.position + aimDirection, Quaternion.identity);
 			gameMangager.players[playerId].collectedItem = null;
 		}
 
