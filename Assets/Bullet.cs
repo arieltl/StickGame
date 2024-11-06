@@ -25,7 +25,10 @@ public class Bullet : MonoBehaviour
         if (damageApplied) return;
 
         var limb = collision.gameObject.GetComponent<RagdollLimb>();
-        if (limb == null) return;
+        if (limb == null) {
+            Destroy(gameObject);
+            return;
+        }
 
         var creature = limb.GetRootParent();
         if (creature == null) return;

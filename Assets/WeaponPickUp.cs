@@ -31,6 +31,6 @@ public class WeaponPickUp : MonoBehaviour
         var InteractableScript = controller.GetComponentInChildren<Interact>();
         if (InteractableScript == null) return;
 
-        InteractableScript.InteractOnCollision();
+        InteractableScript.InteractOnCollision(this.gameObject);
     }
 }

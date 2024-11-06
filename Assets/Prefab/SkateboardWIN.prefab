@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3290133447463613782}
   - component: {fileID: 2903720121420026225}
+  - component: {fileID: 5200295709449689732}
   - component: {fileID: 3931910117332056426}
-  - component: {fileID: 2333743006516608258}
   - component: {fileID: 7296912550037057190}
   m_Layer: 0
   m_Name: SkateboardWIN
@@ -87,6 +87,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &5200295709449689732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 868178278301857575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bed9e4c554abd4341952cfe94cdcc3a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  newSceneName: 
 --- !u!114 &3931910117332056426
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100,19 +113,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 50
---- !u!114 &2333743006516608258
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 868178278301857575}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87601c1ce62860641b11e246e24ba291, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  newSceneName: GreenZone
 --- !u!61 &7296912550037057190
 BoxCollider2D:
   m_ObjectHideFlags: 0

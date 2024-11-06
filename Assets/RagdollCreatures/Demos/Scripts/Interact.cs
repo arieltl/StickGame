@@ -36,7 +36,7 @@ namespace RagdollCreatures
 			{
 				if (Input.GetKeyDown(KeyCode.E))
 				{
-					OnInteract();
+					// OnInteract();
 				}
 
 				if (Input.GetMouseButtonDown(0))
@@ -77,12 +77,42 @@ namespace RagdollCreatures
 			Reset();
 		}
 
-		public void InteractOnCollision()
+		public void InteractOnCollision(GameObject weapon)
 		{
 			if (null == currentInteractable)
 			{
-				OnInteract();
+				foreach (Collider2D collider in root.GetComponentsInChildren<Collider2D>())
+				{
+					Physics2D.IgnoreCollision(weapon.GetComponent<Collider2D>(), collider);
+				}
+
+				weapon.transform.SetParent(position, false);
+				//weapon.AddComponent<FixedJoint2D>();
+				//weapon.GetComponent<FixedJoint2D>().connectedBody = parent;
+
+				weapon.transform.position = position.position;
+
+				Rigidbody2D rb = weapon.GetComponent<Rigidbody2D>();
+				if (null != rb)
+				{
+					rb.isKinematic = true;
+				}
+
+				Equipable equipable = weapon.GetComponent<Equipable>();
+				if (null != equipable)
+				{
+					weapon.transform.rotation = Quaternion.Euler(0.0f, 0.0f, equipable.rotationOffset + position.rotation.eulerAngles.z);
+				}
+
+				RotationFlipper rotationFlipper = weapon.GetComponent<RotationFlipper>();
+				if (null != rotationFlipper)
+				{
+					rotationFlipper.activeRotationFlip = true;
+				}
+
+				currentInteractable = weapon;
 			}
+			
 			
 		}
 
