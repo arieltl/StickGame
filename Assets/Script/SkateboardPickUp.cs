@@ -9,8 +9,12 @@ public class SkateBoardPickup : MonoBehaviour
 
     void Start()
     {
-        // Find the GameManager instance if needed for any future functionality
+        // Find the GameManager instance for score tracking and scene management
         gameManager = FindObjectOfType<GameManager>();
+        if (gameManager == null)
+        {
+            Debug.LogError("GameManager not found in the scene.");
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -21,13 +25,28 @@ public class SkateBoardPickup : MonoBehaviour
         var limb = other.GetComponent<RagdollLimb>();
         if (limb != null)
         {
-            Debug.Log("Player picked up the object. Changing scene to: " + newSceneName);
+            // Get the RagdollCreatureController from the player
+            var playerController = other.GetComponentInParent<RagdollCreatureController>();
+            if (playerController != null)
+            {
+                int playerId = playerController.playerId;  // Assume playerId is set on each player
 
-            // Load the specified scene
-            SceneManager.LoadScene(newSceneName);
+                Debug.Log("Player picked up the object. Changing scene to: " + newSceneName);
 
-            // Destroy this object after pickup to prevent multiple triggers
-            Destroy(gameObject);
+                // Add a point to the player's score in GameManager
+                var hasWon = gameManager.AddScore(playerId, 1);
+            
+                // Load the specified scene
+                if (hasWon) return;
+                SceneManager.LoadScene(newSceneName);
+
+                // Destroy this object after pickup to prevent multiple triggers
+                Destroy(gameObject);
+            }
+            else
+            {
+                Debug.LogWarning("No RagdollCreatureController found on player.");
+            }
         }
         else
         {

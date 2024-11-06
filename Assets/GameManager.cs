@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
 {
     public List<PlaceableItem> placeableTraps = new List<PlaceableItem>();
     public List<PlaceableItem> placeableBlocks = new List<PlaceableItem>();
+    public List<GameObject> weapons = new List<GameObject>();
+    
     public List<PlayerInfo> players = new List<PlayerInfo>();
     public GameObject trapIconPrefab;
     float trapTimer = 20f;
@@ -50,7 +52,23 @@ public class GameManager : MonoBehaviour
         var blockItem = placeableBlocks[blockI];
         blockPickUp.placeableItem = blockItem;
     }
+    
+    public void SpawnWeapon(Vector3 position) {
+        var weapon = Instantiate(weapons[Random.Range(0, weapons.Count)], position, Quaternion.identity);
+    }
+    public bool AddScore(int playerId, int points)
+    {
+        // Increase the score for the player with the given playerId
+        players[playerId].score += points;
 
+        if (players[playerId].score >= 3)
+        {
+            LoadLevel("EndGame");
+            return true;
+
+        }
+        return false;
+    }
     public void StartGame()
     {
         isGameRunning = true;

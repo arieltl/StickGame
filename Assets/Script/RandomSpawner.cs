@@ -37,7 +37,7 @@ public class TimedAreaSpawner : MonoBehaviour
             
             trapTimer -= Time.deltaTime;
             blockTimer -= Time.deltaTime;
-            // weaponTimer -= Time.deltaTime;
+            weaponTimer -= Time.deltaTime;
             
             if (trapTimer <= 0)
             {
@@ -51,12 +51,12 @@ public class TimedAreaSpawner : MonoBehaviour
                 SpawnArea selectedArea = spawnAreas.ElementAt(Random.Range(0, spawnAreas.Count)).Value;
                 gameManager.SpawnBlock(getPosition(selectedArea));
             }
-            // if (weaponTimer <= 0)
-            // {
-            //     weaponTimer = Random.Range(weaponSpawnTime.minTime, weaponSpawnTime.maxTime);
-            //     SpawnArea selectedArea = spawnAreas[Random.Range(0, spawnAreas.Count)];
-            //     gameManager.SpawnBlock(getPosition(selectedArea));
-            // }
+            if (weaponTimer <= 0)
+            {
+                weaponTimer = Random.Range(weaponSpawnTime.minTime, weaponSpawnTime.maxTime);
+                SpawnArea selectedArea = spawnAreas.ElementAt(Random.Range(0, spawnAreas.Count)).Value;
+                gameManager.SpawnWeapon(getPosition(selectedArea));
+            }
         
             
             
