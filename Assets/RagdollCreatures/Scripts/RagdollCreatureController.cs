@@ -167,6 +167,10 @@ namespace RagdollCreatures
 
 			var placeAction = playerInput.actions.FindAction("Place");
 			placeAction.performed += OnPlace;
+
+			var pauseScript = FindFirstObjectByType<PauseMenu>();
+			var pauseAction = playerInput.actions.FindAction("Pause");
+			pauseAction.performed += pauseScript.onPause;
         }
 
 		void OnPlace(InputAction.CallbackContext context) {

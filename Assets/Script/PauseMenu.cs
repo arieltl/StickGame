@@ -1,31 +1,29 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseMenuUI;  // Reference to the pause menu UI panel
+    public GameManager gameMangager;
 
     private bool isPaused = false;
 
     void Start()
     {
-        // Ensure the pause menu is hidden when the game starts
-        pauseMenuUI.SetActive(false);
+        DontDestroyOnLoad(this.gameObject);  // Ensure the pause menu persists between scenes
+        pauseMenuUI.SetActive(false); // Hide the pause menu at the start of the game
     }
 
-    void Update()
+    public void onPause(InputAction.CallbackContext context)
     {
-        // Toggle pause menu when Escape key is pressed
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (isPaused)
         {
-            if (isPaused)
-            {
-                Resume();
-            }
-            else
-            {
-                Pause();
-            }
+            Resume();
+        }
+        else
+        {
+            Pause();
         }
     }
 
@@ -39,22 +37,15 @@ public class PauseMenu : MonoBehaviour
 
     private void Pause()
     {
-        // Show the pause menu and pause the game
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         isPaused = true;
     }
 
-    public void RestartLevel()
-    {
-        // Reload the current scene and resume the game
-        Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
-
     public void ExitToMainMenu()
     {
-        // Resume time and load the main menu scene
+        pauseMenuUI.SetActive(false);
+        gameMangager.isGameRunning = false;
         Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");  // Replace "MainMenu" with your actual main menu scene name
     }

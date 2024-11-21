@@ -211,6 +211,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 46605811-dd4d-416a-b781-6d69670006df
     m_ActionName: RagdollCreature/Place[/Keyboard/f]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 279ff9bb-cde1-40c2-836d-3076a5fb9a43
+    m_ActionName: RagdollCreature/Pause[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: RagdollCreature

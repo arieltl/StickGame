@@ -9,6 +9,9 @@ TagManager:
   - Equipable
   - Bullet
   - PlaceableItem
+  - Trap
+  - Destructible
+  - PausePanel
   layers:
   - Default
   - TransparentFX
