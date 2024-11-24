@@ -19,7 +19,7 @@ public class SkateBoardPickup : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Pickup Triggered");
+        //Debug.Log("Pickup Triggered");
         // Check if the colliding object has a RagdollLimb component (for player detection)
         var limb = other.GetComponent<RagdollLimb>();
         if (limb != null)
@@ -33,7 +33,7 @@ public class SkateBoardPickup : MonoBehaviour
             {
                 int playerId = playerController.playerId;  // Assume playerId is set on each player
 
-                Debug.Log("Player picked up the object. Changing scene to: " + newSceneName);
+                //Debug.Log("Player picked up the object. Changing scene to: " + newSceneName);
 
                 // Add a point to the player's score in GameManager
                 var hasWon = gameManager.AddScore(playerId, 1);

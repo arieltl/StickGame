@@ -77,9 +77,15 @@ public class GameManager : MonoBehaviour
         {
             var player = players[i].GetComponent<RagdollCreatureController>();
             player.playerId = i;
-            this.players.Add(new PlayerInfo { health = 100, score = 0 ,controller = player});
+            this.players.Add(new PlayerInfo {health = 100, score = 0, controller = player});
         }
-        LoadLevel("ExclusionZoneTest 1");
+        LoadLevel("ExclusionZoneTest 1", () =>
+        {
+            for (int i = 0; i < players.Length; i++)
+            {
+                players[i].GetComponent<RagdollCreatureController>().Respawn();
+            }
+        });       
     }
     
     public void ApplyDamage(int playerId, int damage)
@@ -96,26 +102,29 @@ public class GameManager : MonoBehaviour
         } 
     }
     
-    IEnumerator RespawnPlayer(int playerId)
+    IEnumerator RespawnPlayer(int playerId, float delayRespawn = 3f)
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(delayRespawn);
         var player = players[playerId];
         player.controller.Respawn();
     }
     // Update is called once per frame
-    public void LoadLevel(string levelName) {
-        StartCoroutine(LoadLevelAsync(levelName));
+    public void LoadLevel(string levelName, System.Action onLevelLoaded = null) {
+        StartCoroutine(LoadLevelAsync(levelName, onLevelLoaded));
     }
     
-    IEnumerator LoadLevelAsync(string levelName) {
+    IEnumerator LoadLevelAsync(string levelName, System.Action onLevelLoaded) {
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(levelName);
         if (asyncLoad == null) {
             Debug.LogError("Failed to load level " + levelName);
-            yield return null;
+            yield break;
         }
+
         while (!asyncLoad.isDone) {
             yield return null;
         }
+
+        onLevelLoaded?.Invoke();
     }
 }
 //struct player info with health and score

@@ -27,11 +27,10 @@ public class LevelManager : MonoBehaviour {
     void PositionPlayers() {
         players = GameObject.FindGameObjectsWithTag("Player");
         for (int index = 0; index < players.Length; index++) {
-            Debug.Log("position: " + spawnPositions[index].position);
+            //Debug.Log("position: " + spawnPositions[index].position);
             var controller = players[index].GetComponent<RagdollCreatureController>();
             players[index].transform.position = spawnPositions[index].position;
             controller.Respawn();
-            
         }
     }
     

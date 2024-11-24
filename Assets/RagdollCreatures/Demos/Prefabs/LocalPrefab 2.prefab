@@ -196,7 +196,7 @@ MonoBehaviour:
       - m_Target: {fileID: 8433771454317024967}
         m_TargetAssemblyTypeName: RagdollCreatures.RagdollCreatureController, Assembly-CSharp
         m_MethodName: OnStartgame
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

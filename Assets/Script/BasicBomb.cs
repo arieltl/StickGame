@@ -36,7 +36,7 @@ public class Bomb : MonoBehaviour
             }
         }
 
-        Debug.Log("Bomb exploded, destroyed all destructible items in radius.");
+        //Debug.Log("Bomb exploded, destroyed all destructible items in radius.");
     }
 
     private void ActivateExplosionAnimation()

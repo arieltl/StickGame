@@ -20,13 +20,13 @@ namespace RagdollCreatures
 				}
 				catch (Exception e)
 				{
-					Debug.Log(e);
-					Debug.Log("The old input system is not activated, so the InputSystemSwitcher switches all assets to the new system");
+					//Debug.Log(e);
+					//Debug.Log("The old input system is not activated, so the InputSystemSwitcher switches all assets to the new system");
 					UseNewInputSystem = true;
 					SwitchInputSystem();
 				}
 			} else {
-				Debug.Log("The new input system is activated, so the InputSystemSwitcher switches all assets to the new system");
+				//Debug.Log("The new input system is activated, so the InputSystemSwitcher switches all assets to the new system");
 			}
 		}
 

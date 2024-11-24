@@ -40,11 +40,11 @@ namespace RagdollCreatures
 		{
 			if (Time.time >= lastShootTime + shootDelay)
 			{
-				Vector2 dir = startPosition.position - transform.position;
-				float rotation = Mathf.Atan2(dir.x, dir.y) * Mathf.Rad2Deg;
+				Vector2 dir = startPosition.right;
 				audioSource.PlayOneShot(shootSound);
 
-				Debug.DrawRay(startPosition.position, dir);
+				//Debug.DrawRay(startPosition.position, dir);
+				Debug.DrawRay(startPosition.position, dir, Color.red, 1.0f);
 
 				GameObject bullet = Instantiate(bulletPrefab);
 				Bullet bulletScript = bullet.GetComponent<Bullet>();
@@ -53,10 +53,10 @@ namespace RagdollCreatures
 					bulletScript.SetDamage(damage);
 				}
 				bullet.transform.position = startPosition.position;
-				bullet.transform.rotation = startPosition.rotation;
-				dir.Normalize();
+				bullet.transform.rotation = Quaternion.LookRotation(Vector3.forward, dir); // Match rotation to direction
 				bullet.GetComponent<Rigidbody2D>().velocity = dir * bulletSpeed;
 
+				// Apply recoil to the parent object
 				Rigidbody2D rigidbody = parent.GetComponent<Rigidbody2D>();
 				if (null != rigidbody)
 				{

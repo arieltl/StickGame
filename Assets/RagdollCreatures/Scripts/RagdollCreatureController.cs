@@ -42,7 +42,7 @@ namespace RagdollCreatures
 
 		public GameObject root;
 		public GameObject IK;
-		GameManager gameMangager;
+		GameManager gameManager;
 		private bool shouldRespawn = false;
 
 		#endregion
@@ -75,7 +75,7 @@ namespace RagdollCreatures
 		}
 
 		void Start() {
-			gameMangager = FindObjectOfType<GameManager>();
+			gameManager = FindObjectOfType<GameManager>();
 			setControlls();
 		}
 
@@ -96,15 +96,17 @@ namespace RagdollCreatures
 			controller.FixedUpdate();
 		}
 
-		public void OnStartgame() {
-			if (!gameMangager.isGameRunning){
-				gameMangager.StartGame();
-			} else {
-				var gameManager = FindObjectOfType<GameManager>();
-				gameManager.ApplyDamage(playerId, 100);
-			}
-
-
+		public void OnStartgame(InputAction.CallbackContext context) 
+		{
+			if (context.performed)
+			{
+				if (!gameManager.isGameRunning){
+					gameManager.StartGame();
+				} else {
+					var gameManager = FindObjectOfType<GameManager>();
+					gameManager.ApplyDamage(playerId, 100);
+				}
+			}			
 		}
 
 		public void Respawn() {
@@ -112,7 +114,7 @@ namespace RagdollCreatures
 			hasRespawned = true;
 			creature.ActivateAllMuscles();			
 			
-			gameMangager.players[playerId].health = 100;
+			gameManager.players[playerId].health = 100;
 
 			var currentBody = transform.Find("PlayerBody").gameObject;
 			
@@ -122,7 +124,6 @@ namespace RagdollCreatures
 			var newBody = Instantiate(playerPrefab, transform.position, transform.rotation,transform);
 
 			newBody.name = "PlayerBody";
-			
 			
 			CreateController();
 			creature.isDead = false;
@@ -154,7 +155,7 @@ namespace RagdollCreatures
 	        
 	        var aimAction = playerInput.actions.FindAction("Aim");
 	        var followMouse = GetComponentsInChildren<FollowMouse>();
-	        Debug.Log(followMouse.Length);
+	        //Debug.Log(followMouse.Length);
 	        aimAction.performed += followMouse[0].OnMouseMove;
 	        aimAction.performed += interactScript.OnAim;
 	        aimAction.performed += (InputAction.CallbackContext context) => {
@@ -174,15 +175,15 @@ namespace RagdollCreatures
         }
 
 		void OnPlace(InputAction.CallbackContext context) {
-			var placeable = gameMangager.players[playerId].collectedItem;
-			Debug.Log("Place " + placeable);
+			var placeable = gameManager.players[playerId].collectedItem;
+			//Debug.Log("Place " + placeable);
 			if (placeable == null) return;
-			Debug.Log("Place not null");
+			//Debug.Log("Place not null");
 			var body = transform.Find("PlayerBody").gameObject;
 			var root = body.transform.Find("Root").gameObject;
 			var hip = root.transform.Find("Hip");
 			Instantiate(placeable.Value.prefab, hip.position + aimDirection, Quaternion.identity);
-			gameMangager.players[playerId].collectedItem = null;
+			gameManager.players[playerId].collectedItem = null;
 		}
 
 		public void OnMove(InputAction.CallbackContext context)

@@ -218,7 +218,7 @@ namespace RagdollCreatures
 		private RagdollLimb[] GetAllRagdollLimbs()
 		{
 			var limbs = GetComponentsInChildren<RagdollLimb>().Where((limb => limb!= null )).ToArray();
-			Debug.Log("Limbs: " + limbs.Length);
+			//Debug.Log("Limbs: " + limbs.Length);
 			return limbs;
 		}
 

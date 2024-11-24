@@ -54,9 +54,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startPosition: {fileID: 6767050418049405927}
   bulletPrefab: {fileID: 2564232881344377773, guid: 53ce596b08391d94cbdd2d70e877cd9c, type: 3}
-  damage: 25
-  bulletSpeed: 40.2
-  recoil: 0
+  damage: 50
+  bulletSpeed: 80
+  recoil: 1500
   shootDelay: 2
   audioSource: {fileID: 0}
   shootSound: {fileID: 8300000, guid: c5619596ec3aa4ec2be2b56ecfbbafb8, type: 3}

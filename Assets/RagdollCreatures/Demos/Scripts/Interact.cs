@@ -73,7 +73,7 @@ namespace RagdollCreatures
 
 		public void OnInteract(InputAction.CallbackContext context)
 		{
-			Debug.Log("Interact");
+			//Debug.Log("Interact");
 			Reset();
 		}
 

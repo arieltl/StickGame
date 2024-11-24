@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 namespace RagdollCreatures
 {
@@ -17,19 +18,22 @@ namespace RagdollCreatures
 			{
 				rigidbody2D.position = spawnPositions[index].position;
 			}
-
-			RagdollCreature ragdollCreature = playerInput.gameObject.GetComponent<RagdollCreature>();
-			if (null != ragdollCreature)
+			
+			if (SceneManager.GetActiveScene().name == "StartGame") 
 			{
-				int colorIndex = Random.Range(0, colors.Length);
-				Color newColor = colors[colorIndex];
-				var ragdollCreatureController = playerInput.gameObject.GetComponent<RagdollCreatureController>();
-				ragdollCreatureController.color = newColor;
-				foreach (SpriteRenderer renderer in ragdollCreature.GetComponentsInChildren<SpriteRenderer>())
+				RagdollCreature ragdollCreature = playerInput.gameObject.GetComponent<RagdollCreature>();
+				if (null != ragdollCreature)
 				{
-					if (null != renderer && null != renderer.GetComponent<RagdollLimb>())
+					int colorIndex = Random.Range(0, colors.Length);
+					Color newColor = colors[colorIndex];
+					var ragdollCreatureController = playerInput.gameObject.GetComponent<RagdollCreatureController>();
+					ragdollCreatureController.color = newColor;
+					foreach (SpriteRenderer renderer in ragdollCreature.GetComponentsInChildren<SpriteRenderer>())
 					{
-						renderer.color = newColor;
+						if (null != renderer && null != renderer.GetComponent<RagdollLimb>())
+						{
+							renderer.color = newColor;
+						}
 					}
 				}
 			}
