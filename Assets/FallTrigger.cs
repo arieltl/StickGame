@@ -15,12 +15,12 @@ public class FallTrigger : MonoBehaviour
         //Get Tag of the object that entered the trigger
         string tag = other.gameObject.tag;
         
-        if (tag == "Player")
+        if (tag == "PlayerBody")
         {
             RespawnPlayer(other);
-        } else 
+        } else if (tag == "Equipable" || tag == "Bullet")
         {
-            Destroy(other.gameObject); //Destroy the object that entered the trigger 
+            Destroy(other.gameObject); //Destroy the object that entered the trigger
         }
     }
 

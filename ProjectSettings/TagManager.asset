@@ -12,6 +12,8 @@ TagManager:
   - Trap
   - Destructible
   - PausePanel
+  - PlayerProxyTarget
+  - PlayerProxy
   layers:
   - Default
   - TransparentFX
@@ -48,4 +50,19 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 3455780239
+    locked: 0
+  - name: TileMapBackground
+    uniqueID: 654723129
+    locked: 0
+  - name: TileMap
+    uniqueID: 3864133437
+    locked: 0
+  - name: Itens
+    uniqueID: 1739674803
+    locked: 0
+  - name: Player
+    uniqueID: 2548675823
     locked: 0
