@@ -30,7 +30,7 @@ public class Bomb : MonoBehaviour
         foreach (Collider2D collider in hitColliders)
         {
             // Check if the object has the tag "Destructible"
-            if (collider.CompareTag("Destructible"))
+            if (collider.CompareTag("Destructible") || collider.CompareTag("Trap"))
             {
                 Destroy(collider.gameObject); // Destroy the object
             }

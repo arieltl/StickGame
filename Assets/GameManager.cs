@@ -63,6 +63,7 @@ public class GameManager : MonoBehaviour
 
         if (players[playerId].score >= 3)
         {
+            PersistentObjectsCleaner.DestroyAllPersistentObjects();
             LoadLevel("EndGame");
             return true;
 
